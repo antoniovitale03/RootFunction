@@ -1,4 +1,5 @@
 from sympy import *
+##
 class Newthon_Raphson():
     def __init__(self):
         [self.g, self.x0, self.E] = self.set_data()
