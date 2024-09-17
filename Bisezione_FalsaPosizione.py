@@ -35,6 +35,13 @@ class Bisezione_FalsaPosizione():
         else:
             E = 0 #uso il secondo criterio di stop, quindi non uso la E
         return f, a, b, E, stop
+    def check_interval_values(self, a, b): #controllo che a o b siano diversi da 0 nel metodo di Falsa Posizione
+        if a == 0 or b == 0:
+            print("Uno dei due estremi è uguale a 0! Riprova.")
+            a = float(input("Estremo sinistro dell'intervallo: "))
+            b = self.set_b(a)
+            self.check_interval_values(a, b)
+        return true
     def bisezione_comune(self, f, a, b): #istruzioni comuni del metodo di bisezione per tutti i criteri di stop
         c = 0
         if (f(a) * f(b)) > 0:
@@ -65,7 +72,7 @@ class Bisezione_FalsaPosizione():
     def bisezione_stop3(self, f, a, b, E):
         k = 0
         c = 0
-        while k < math.log2((b-a)/E): #criterio 3
+        while k < math.ceil(math.log2((b-a)/E)): #criterio 3
             [a, b, c] = self.bisezione_comune(f, a, b)
             k += 1
         print(f"radice della funzione: {c} con {k} iterazioni")
@@ -115,7 +122,7 @@ class Bisezione_FalsaPosizione():
     def falsa_posizione_stop3(self, f, a, b, E):
         k = 0
         c = 0
-        while k < math.log2((b-a)/E):  # criterio 3
+        while k < math.ceil(math.log2((b-a)/E)):  # criterio 3
             [a, b, c] = self.falsa_posizione_comune(f, a, b)
             k += 1
         print(f"radice della funzione: {c} con {k} iterazioni")
@@ -137,11 +144,4 @@ class Bisezione_FalsaPosizione():
             elif stop == 4:
                 self.falsa_posizione_stop4(f, a, b, E)
 
-    def check_interval_values(self, a, b): #controllo che a o b siano diversi da 0 nel metodo di Falsa Posizione
-        if a == 0 or b == 0:
-            print("Uno dei due estremi è uguale a 0! Riprova.")
-            a = float(input("Estremo sinistro dell'intervallo: "))
-            b = self.set_b(a)
-            self.check_interval_values(a, b)
-        return true
 
