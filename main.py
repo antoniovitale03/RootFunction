@@ -13,8 +13,7 @@ def main():
         Obj.falsa_posizione(Obj.f, Obj.a, Obj.b, Obj.E, Obj.stop)
     elif response == 3:
         Obj = Newthon_Raphson()
-        [radice, k] = Obj.NR(Obj.g, Obj.x0, Obj.E)
-        print(f"radice della funzione: {radice} con {k} iterazioni")
+        Obj.newthon_raphson(Obj.g, Obj.x0, Obj.E)
     else:
         print("Input non valido. Riprova.")
         main()

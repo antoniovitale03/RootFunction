@@ -15,7 +15,7 @@ class Newthon_Raphson():
         g = lambdify(x, g_symb)
         return g
 
-    def NR(self, g, x0, E):
+    def newthon_raphson(self, g, x0, E):
         k = 0
         x1 = g(x0)
         while abs(x1 - x0) > E:
@@ -23,4 +23,4 @@ class Newthon_Raphson():
             x1 = g(x0)
             k += 1
         c = x1
-        return c, k
+        print(f"radice della funzione: {c} con {k} iterazioni")
