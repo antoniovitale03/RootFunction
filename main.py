@@ -1,6 +1,5 @@
 from Bisezione_FalsaPosizione import Bisezione_FalsaPosizione
 from Newthon_Raphson import Newthon_Raphson
-##
 def main():
     response = int(input("Scegli quale algoritmo usare per calcolare la radice della funzione: \n"
                          "1)Bisezione\n"

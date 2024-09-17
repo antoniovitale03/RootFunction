@@ -1,7 +1,5 @@
 import math
 import sys
-##
-
 from sympy import *
 class Bisezione_FalsaPosizione():
     def __init__(self):
