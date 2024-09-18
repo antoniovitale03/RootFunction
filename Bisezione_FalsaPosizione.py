@@ -54,13 +54,16 @@ class Bisezione_FalsaPosizione():
             else:
                 a = c
         return a, b, c
+
+    def result(self, c, k):
+        return f"radice della funzione: {round(c, 4)} con {k} iterazioni"
     def bisezione_stop1(self, f, a, b, E):
         k = 0
         c = 0
         while abs(f(c)) > E: #criterio 1
             [a, b, c] = self.bisezione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def bisezione_stop2(self, f, a, b):
         k = 0
         c = 0
@@ -68,21 +71,21 @@ class Bisezione_FalsaPosizione():
         while k < itmax: #criterio 2
             [a, b, c] = self.bisezione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def bisezione_stop3(self, f, a, b, E):
         k = 0
         c = 0
         while k < math.ceil(math.log2((b-a)/E)): #criterio 3
             [a, b, c] = self.bisezione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def bisezione_stop4(self, f, a, b, E):
         k = 0
         c = 0
         while (b-a)/min(abs(a), abs(b)) > E:
             [a, b, c] = self.bisezione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def bisezione(self, f, a, b, E, stop):
         if stop == 1:
             self.bisezione_stop1(f, a, b, E)
@@ -110,7 +113,7 @@ class Bisezione_FalsaPosizione():
         while abs(f(c)) > E: #criterio 1
             [a, b, c] = self.falsa_posizione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def falsa_posizione_stop2(self, f, a, b):
         k = 0
         c = 0
@@ -118,21 +121,21 @@ class Bisezione_FalsaPosizione():
         while k < itmax:  # criterio 2
             [a, b, c] = self.falsa_posizione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def falsa_posizione_stop3(self, f, a, b, E):
         k = 0
         c = 0
         while k < math.ceil(math.log2((b-a)/E)):  # criterio 3
             [a, b, c] = self.falsa_posizione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def falsa_posizione_stop4(self, f, a, b, E):
         k = 0
         c = 0
         while ((b - a)/min(abs(a), abs(b))) > E: #criterio 4
             [a, b, c] = self.falsa_posizione_comune(f, a, b)
             k += 1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def falsa_posizione(self, f, a, b, E, stop):
         if self.check_interval_values(a, b):
             if stop == 1:

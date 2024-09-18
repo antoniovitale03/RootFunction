@@ -36,7 +36,6 @@ class NR_Direzione_Costante():
             b = self.set_b(a)
             self.check_interval_values(a, b)
         return true
-
     def get_M(self, f_symb, a, b, n):  # n rappresenta il grado della derivata
         v = []
         x = symbols("x")
@@ -45,6 +44,8 @@ class NR_Direzione_Costante():
         v.append(abs(devf(b)))
         return max(v)
 
+    def result(self, c, k):
+        print(f"radice della funzione: {round(c, 4)} con {k} iterazioni")
     def newthon_raphson(self, f_symb, x0, E):
         #calcolo la funzione di iterazione funzionale g(x)
         x = symbols("x")
@@ -57,7 +58,7 @@ class NR_Direzione_Costante():
             x1 = g(x0)
             k += 1
         c = x1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
 
     def get_g_newthon_raphson(self, f_symb):#calcolo la funzione di iterazione funzionale g(x)
         x = symbols("x")
@@ -77,7 +78,7 @@ class NR_Direzione_Costante():
             x1 = g(x0)
             k += 1
         c = x1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
 
     def nr_stop2(self, f_symb, x0): #newthon raphson con criterio di stop 2
         g = self.get_g_newthon_raphson(f_symb)
@@ -89,7 +90,7 @@ class NR_Direzione_Costante():
             x1 = g(x0)
             k += 1
         c = x1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
 
     def dr_stop1(self, f_symb, x0, E, M): #metodo della direzione costante con criterio di stop 1
         g = self.get_g_direzione_costante(f_symb, M)
@@ -100,7 +101,7 @@ class NR_Direzione_Costante():
             x1 = g(x0)
             k += 1
         c = x1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
 
     def dr_stop2(self, f_symb, x0, M): #metodo della direzione costante con criterio di stop 2
         g = self.get_g_direzione_costante(f_symb, M)
@@ -112,19 +113,19 @@ class NR_Direzione_Costante():
             x1 = g(x0)
             k += 1
         c = x1
-        print(f"radice della funzione: {c} con {k} iterazioni")
+        self.result(c, k)
     def nr(self, f_symb, x0, E, stop):
         if stop == 1:
             self.nr_stop1(f_symb, x0, E)
         elif stop == 2:
             self.nr_stop2(f_symb, x0)
     def dr(self, f_symb, x0, E, stop):
-        #devo usare l'intervallo [a, b] per calcolare M
+        #uso l'intervallo [a, b] per calcolare M
         a = float(input("Inserisci l'estremo sinistro: "))
         b = self.set_b(a)
-        self.check_interval_values(a, b)
-        M = self.get_M(f_symb, a, b, 1)
-        if stop == 1:
-            self.dr_stop1(f_symb, x0, E, M)
-        elif stop == 2:
-            self.dr_stop2(f_symb, x0, M)
+        if self.check_interval_values(a, b):
+            M = self.get_M(f_symb, a, b, 1)
+            if stop == 1:
+                self.dr_stop1(f_symb, x0, E, M)
+            elif stop == 2:
+                self.dr_stop2(f_symb, x0, M)
